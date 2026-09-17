@@ -1,5 +1,3 @@
-# Linux-Program-Design
-
 # Linux語法:沒消息就是好消息
 
 ---
@@ -88,8 +86,10 @@
 
 	> 自己的
 		* passwd
+ 
 	> 其他使用者
 		* sudo passwd 使用者名稱
+
 	> root
 		* sudo passwd
 		
@@ -105,6 +105,7 @@
 	
 - 回家目錄
 	> cd + Enter 
+
 - 查找IP位址
 	> ifconfig
 	
