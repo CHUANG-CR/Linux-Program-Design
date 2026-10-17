@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# 檢查使用者有沒有輸入檔案名稱
+if [ -z "$1" ]; then
+    echo "❌ 錯誤: 請提供要編譯的 C++ 檔案名稱！"
+    echo "用法: $0 <檔案名稱.cpp>"
+    exit 1
+fi
+
+# 取得完整的檔案路徑與副檔名
+CPP_FILE="$1"
+
+# 檢查該檔案是否存在
+if [ ! -f "$CPP_FILE" ]; then
+    echo "❌ 錯誤: 找不到檔案 '$CPP_FILE'"
+    exit 1
+fi
+
+# 自動去背（拿掉 .cpp 副檔名），作為執行檔名稱
+EXEC_FILE="${CPP_FILE%.cpp}"
+
+echo "🔨 正在編譯: $CPP_FILE -> $EXEC_FILE ..."
+
+# 執行編譯
+g++ "$CPP_FILE" -o "$EXEC_FILE"
+
+# 檢查編譯結果
+if [ $? -eq 0 ]; then
+    echo "✅ 編譯成功！輸入 ./${EXEC_FILE} 即可執行。"
+else
+    echo "❌ 編譯失敗，請檢查程式碼語法。"
+fi
