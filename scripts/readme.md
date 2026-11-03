@@ -1,3 +1,5 @@
+# 終端機 Git 推送驗證設定
+
 # 產生新的SSH金鑰
 ```
 ssh-keygen -t ed25519 -C "你的信箱@example.com"
@@ -22,4 +24,3 @@ cat ~/.ssh/id_ed25519.pub
 ```
 ssh -T git@github.com
 ```
-
