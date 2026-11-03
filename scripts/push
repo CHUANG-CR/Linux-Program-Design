@@ -1,0 +1,30 @@
+#!/bin/sh
+
+# 1. 先檢查有沒有任何檔案被修改或新增 (git status --porcelain 有內容代表有改動)
+if [ -z "$(git status --porcelain)" ]; then
+    echo "✨ 目前沒有偵測到任何變更（工作區很乾淨），不需要推送。"
+    exit 0
+fi
+
+# 2. 有改動才請使用者輸入 commit 訊息
+echo "請輸入 commit 訊息："
+read commit_msg
+
+if [ -z "$commit_msg" ]; then
+    echo "❌ 錯誤：commit 訊息不能為空！"
+    exit 1
+fi
+
+echo "📦 加入變更 (git add .) ..."
+git add .
+
+echo "📝 提交中 (git commit) ..."
+git commit -m "$commit_msg"
+
+if [ $? -eq 0 ]; then
+    echo "🚀 推送至 GitHub (git push) ..."
+    git push
+    echo "✅ 推送完成！"
+else
+    echo "⚠️ 提交失敗。"
+fi
